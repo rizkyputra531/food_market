@@ -86,7 +86,7 @@ class _FoodDetailsPageState extends State<FoodDetailsPage> {
                                   width: MediaQuery.of(context).size.width -
                                       134, //32+102
                                   child: Text(
-                                    widget.transaction.food.nama,
+                                    widget.transaction.food.name,
                                     style: blackFontStyle2,
                                   ),
                                 ),

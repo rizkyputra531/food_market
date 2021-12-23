@@ -6,12 +6,13 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  User user;
+  File pictureFile;
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    TextEditingController emailController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
-    TextEditingController nameController = TextEditingController();
-
     return GeneralPage(
       title: 'Sign Up',
       subtitle: 'Register and eat',
@@ -20,7 +21,16 @@ class _SignUpPageState extends State<SignUpPage> {
       },
       child: Column(
         children: [
-          Container(
+          GestureDetector(
+            onTap: () async {
+              PickedFile pickedFile =
+                  await ImagePicker().getImage(source: ImageSource.gallery);
+              if (pickedFile != null) {
+                pictureFile = File(pickedFile.path);
+                setState(() {});
+              }
+            },
+            child: Container(
               width: 110,
               height: 110,
               //color: Colors.red,
@@ -30,12 +40,25 @@ class _SignUpPageState extends State<SignUpPage> {
                   image: DecorationImage(
                 image: AssetImage('assets/images/photo_border.png'),
               )),
-              child: Container(
-                  decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      image: DecorationImage(
-                        image: AssetImage('assets/images/photo.png'),
-                      )))),
+              //apabila foto ada, maka load dari foto yg sudah ada
+              child: (pictureFile != null)
+                  ? Container(
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                              image: FileImage(pictureFile),
+                              fit: BoxFit.cover)),
+                    )
+                  //apabila foto tidak ada, maka load foto default
+                  : Container(
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                              image: AssetImage('assets/images/photo.png'),
+                              fit: BoxFit.cover)),
+                    ),
+            ),
+          ),
           Container(
             width: double.infinity,
             margin: EdgeInsets.fromLTRB(defaultMargin, 26, defaultMargin, 6),
@@ -77,7 +100,7 @@ class _SignUpPageState extends State<SignUpPage> {
           Container(
             width: double.infinity,
             margin: EdgeInsets.fromLTRB(defaultMargin, 16, defaultMargin, 6),
-            child: Text("Email Address", style: blackFontStyle2),
+            child: Text("Password", style: blackFontStyle2),
           ),
           Container(
               width: double.infinity,
@@ -87,6 +110,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(color: Colors.black)),
               child: TextField(
+                obscureText: true,
                 controller: passwordController,
                 decoration: InputDecoration(
                     border: InputBorder.none,
@@ -101,7 +125,13 @@ class _SignUpPageState extends State<SignUpPage> {
             padding: EdgeInsets.symmetric(horizontal: defaultMargin),
             child: RaisedButton(
               onPressed: () {
-                Get.to(() => AddressPage());
+                Get.to(() => AddressPage(
+                    User(
+                      name: nameController.text,
+                      email: emailController.text,
+                    ),
+                    passwordController.text,
+                    pictureFile));
               },
               elevation: 0,
               shape: RoundedRectangleBorder(

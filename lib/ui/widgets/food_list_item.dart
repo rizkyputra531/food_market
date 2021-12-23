@@ -25,7 +25,7 @@ class FoodListItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                food.nama,
+                food.name,
                 style: blackFontStyle2,
                 maxLines: 1,
                 overflow: TextOverflow.clip,

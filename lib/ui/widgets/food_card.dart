@@ -30,7 +30,7 @@ class FoodCard extends StatelessWidget {
             margin: EdgeInsets.fromLTRB(12, 12, 12, 6),
             width: 200,
             child: Text(
-              food.nama,
+              food.name,
               style: blackFontStyle2,
               maxLines: 1,
               overflow: TextOverflow.clip,

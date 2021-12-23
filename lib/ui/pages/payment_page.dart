@@ -66,7 +66,7 @@ class _PaymentPageState extends State<PaymentPage> {
                               ///78 (lebar jumlah items)
 
                               child: Text(
-                                widget.transaction.food.nama,
+                                widget.transaction.food.name,
                                 style: blackFontStyle2,
                                 maxLines: 1,
                                 overflow: TextOverflow.clip,
@@ -106,7 +106,7 @@ class _PaymentPageState extends State<PaymentPage> {
                             defaultMargin -
                             5,
                         child: Text(
-                          widget.transaction.food.nama,
+                          widget.transaction.food.name,
                           style: greyFontStyle,
                         )),
                     SizedBox(

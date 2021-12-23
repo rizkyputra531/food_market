@@ -26,7 +26,7 @@ class OrderListItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                transaction.food.nama,
+                transaction.food.name,
                 style: blackFontStyle2,
                 maxLines: 1,
                 overflow: TextOverflow.clip,

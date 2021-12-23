@@ -8,4 +8,8 @@ part 'user_services.dart';
 part 'food_services.dart';
 part 'transaction_services.dart';
 
-String baseURL = "http://food_market_backend.test/api/";
+String baseURL = 'http://8a49-36-75-67-181.ngrok.io/api/';
+
+// String baseURL = 'http://foodmarket-backend.buildwithangga.id/api/';
+
+

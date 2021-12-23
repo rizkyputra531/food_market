@@ -48,7 +48,7 @@ class _FoodPageState extends State<FoodPage> {
                             image: NetworkImage(
                                 (context.bloc<UserCubit>().state as UserLoaded)
                                     .user
-                                    .picturePath),
+                                    .profile_photo_url),
                             fit: BoxFit.cover)),
                   ),
                 ],
@@ -67,7 +67,7 @@ class _FoodPageState extends State<FoodPage> {
                             children: state.foods
                                 .map((e) => Padding(
                                       padding: EdgeInsets.only(
-                                          left: (e == mockFood.first)
+                                          left: (e == state.foods.first)
                                               ? defaultMargin
                                               : 0,
                                           right: defaultMargin),
